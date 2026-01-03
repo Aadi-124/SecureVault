@@ -41,13 +41,13 @@ public class TokenInterceptor implements HandlerInterceptor {
         // Extract and validate JWT
         String auth = request.getHeader("Authorization");
         if (auth == null || !auth.startsWith("Bearer ")) {
-            return reject(response, "Missing token");
+            return reject(request,response, "Missing token");
         }
 
         String token = auth.substring(7).trim();
 
         if (!jwtUtil.validateToken(token)) {
-            return reject(response, "Invalid or expired token");
+            return reject(request, response, "Invalid or expired token");
         }
 
         // Extract email from token
@@ -55,7 +55,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         Optional<User> userOpt = userService.findByEmail(email);
 
         if (userOpt.isEmpty()) {
-            return reject(response, "User not found");
+            return reject(request,response, "User not found");
         }
 
         // Attach current user to request
