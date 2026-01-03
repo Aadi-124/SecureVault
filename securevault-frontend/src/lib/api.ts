@@ -20,12 +20,12 @@
 // }
 
 
-export const API_BASE = "http://localhost:8080/api";
+export const API_BASE = "https://securevault-backend-tdwe.onrender.com/api";
 
 export async function apiFetch(path: string, options: any = {}) {
   const token = localStorage.getItem("securevault_token");
 
-  const res = await fetch(`http://localhost:8080/api${path}`, {
+  const res = await fetch(`https://securevault-backend-tdwe.onrender.com/api${path}`, {
     ...options,
     headers: {
       "Content-Type": "application/json",
