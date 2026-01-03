@@ -69,10 +69,33 @@ public class TokenInterceptor implements HandlerInterceptor {
         return true;
     }
 
-    private boolean reject(HttpServletResponse res, String msg) throws Exception {
-        res.setStatus(401);
-        res.setContentType("application/json");
-        res.getWriter().write("{\"message\":\"" + msg + "\"}");
-        return false;
+    // private boolean reject(HttpServletResponse res, String msg) throws Exception {
+    //     res.setStatus(401);
+    //     res.setContentType("application/json");
+    //     res.getWriter().write("{\"message\":\"" + msg + "\"}");
+    //     return false;
+    // }
+
+    private boolean reject(HttpServletRequest req,
+                       HttpServletResponse res,
+                       String msg) throws Exception {
+
+    // Add CORS headers manually for error responses
+    String origin = req.getHeader("Origin");
+    if (origin != null) {
+        res.setHeader("Access-Control-Allow-Origin", origin);
+        res.setHeader("Vary", "Origin");
     }
+
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+
+    res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+    res.setContentType("application/json");
+    res.getWriter().write("{\"message\":\"" + msg + "\"}");
+
+    return false;
+}
+
 }
