@@ -21,7 +21,7 @@ public class CorsConfig {
         cors.setAllowedOriginPatterns(Arrays.asList(
                 "http://localhost:*",
                 "http://127.0.0.1:*",
-                " https://securevault-vlcz.onrender.com/*"
+                "https://securevault-vlcz.onrender.com/**"
         ));
 
 
