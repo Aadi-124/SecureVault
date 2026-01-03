@@ -20,7 +20,8 @@ public class CorsConfig {
         // FIXED ✔ No more "*"
         cors.setAllowedOriginPatterns(Arrays.asList(
                 "http://localhost:*",
-                "http://127.0.0.1:*"
+                "http://127.0.0.1:*",
+                " https://securevault-vlcz.onrender.com/*"
         ));
 
 
