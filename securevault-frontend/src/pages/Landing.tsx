@@ -276,7 +276,7 @@ export default function Landing() {
           </div>
 
           <p className="text-sm text-muted-foreground">
-            © 2024 SecureVault. All rights reserved.
+            © 2025 SecureVault By Shubham Pawar.
           </p>
         </div>
       </footer>
